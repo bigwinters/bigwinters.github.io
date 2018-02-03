@@ -5,7 +5,8 @@
 function showResponse(response) {
     var responseString = JSON.stringify(response, '', 2);
     document.getElementById('response').innerHTML += responseString;
-    document.getElementById('video').innerHTML += response.items[0].id.videoId;
+    document.getElementById('test').innerHTML += response.items[0].id.videoId;
+    document.getElementById('video).src = "https://www.youtube.com/embed/" + response.items[0].id.videoId;
 
 }
 
