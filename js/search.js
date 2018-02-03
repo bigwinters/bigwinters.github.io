@@ -26,7 +26,7 @@ function search() {
         q: 'dessa',
         videoDuration: 'short',
         type: 'video',
-        maxResults: 0
+        maxResults: 1
     });
     
     // Send the request to the API server,
