@@ -109,6 +109,7 @@ $(document).ready( function(){
 				tickBoard[f][g] = 0;
 			}
 		}
+		tick();
 	});
 
 	$(".col").click(function(){
