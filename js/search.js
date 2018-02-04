@@ -3,9 +3,8 @@
 
 // Helper function to display JavaScript value on HTML page.
 function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML = responseString;
-    document.getElementById('test').innerHTML += response.items[0].id.videoId;
+    //var responseString = JSON.stringify(response, '', 2);
+    //document.getElementById('response').innerHTML = responseString
     document.getElementById('video').src = "https://www.youtube.com/embed/" + response.items[response.items.length-1].id.videoId;
 
 }
@@ -24,9 +23,10 @@ function onYouTubeApiLoad() {
 
 function search() {
     // Uses the JavaScript client library to create a search.list() API call.
+    var userSearch = document.getElementById('userSearch').innerHTML;
     var request = gapi.client.youtube.search.list({
         part: 'snippet',
-        q: 'dessa',
+        q: userSearch,
         videoDuration: 'short',
         type: 'video',
         maxResults: 50,
