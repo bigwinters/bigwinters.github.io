@@ -1,15 +1,17 @@
 .col {
 	border: 1px solid black;
 	color: transparent;
+	padding: 0;
 }
 
 h1 {
 	text-align : center;
+	font-size: 3.5rem;
 }
 
 #board {
 	margin: 4em auto 0.5em auto;
-    	padding: 4em 4em 0 4em;
+    	padding: 0 4em 0 4em;
 	width: 58em;
 }
 
