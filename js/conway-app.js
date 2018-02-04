@@ -103,8 +103,8 @@ $(document).ready( function(){
 	});
 
 	$("#clear").click(function(){
-		for (var f = 1; y < 20; y++){
-			for (var g = 1; z < 20; z++) {
+		for (var f = 1; f < 20; f++){
+			for (var g = 1; g < 20; g++) {
 				board[f][g] = 0;
 				tickBoard[f][g] = 0;
 			}
