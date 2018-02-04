@@ -5,16 +5,25 @@
 
 #board {
 	margin: 4em auto 0.5em auto;
-    	padding: 0 4em 0 4em;
+    padding: 4em 4em 0 4em;
 	width: 58em;
 }
 
 #buttons {
-	margin: 2em 0em 2em 5em;
+	margin: 2em 22em 2em 21.5em;
 }
 
-h1 {
-	min-width: 900px;
+#left-button {
+	float: right;
+	padding: 1em;
+}
+
+#right-button {
+	float: left;
+	padding: 1em;
+}
+
+#centre-button {
 	text-align: center;
-	font-size: 4.5rem;
+	padding: 1em;
 }
