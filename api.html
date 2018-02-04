@@ -10,15 +10,17 @@
         <script src="js/search.js" type="text/javascript"></script>
         <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
     </head>
-    <body>        
-        <iframe src="http://www.youtube.com/embed/lDLzlsf0McM" id="video" width="600" height="315" frameborder="0" allowfullscreen></iframe>
-        <div> 
-        <div id="searchbar">                
-                <input type="text" id="userSearch" value="">
+    <body>
+        <div class="container-fluid">
+            <iframe src="http://www.youtube.com/embed/lDLzlsf0McM" id="video" width="600" height="315" frameborder="0" allowfullscreen></iframe>
+            <div class="row"> 
+                <div id="searchbar">                
+                    <input type="text" id="userSearch" value="">
+                </div>
+                <div>
+                    <button id="searchButton" class="btn btn-lg btn-danger" type="button" onclick="search()">Search!</button>
+                </div>
             </div>
-            <div>
-                <button class="btn btn-lg btn-danger" type="button" onclick="search()">Search!</button>
-            </div>
-        </div>       
+        <div>
     </body>
 </html>
