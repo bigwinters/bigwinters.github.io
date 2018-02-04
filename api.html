@@ -9,9 +9,15 @@
         <script src="js/search.js" type="text/javascript"></script>
         <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
     </head>
-    <body>
-        <pre id="test"></pre>
+    <body>        
         <iframe src="http://www.youtube.com/embed/lDLzlsf0McM" id="video" width="600" height="315" frameborder="0" allowfullscreen></iframe>
-        <pre id="response"></pre>        
+        <form>
+            <div>                
+                <input type="text" id="userSearch" name="name" value="dessa">
+            </div>
+            <div>
+                <button onclick="search()">Search!</button>
+            </div>
+        </form>       
     </body>
 </html>
