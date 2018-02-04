@@ -17,13 +17,12 @@ function onClientLoad() {
 // Called automatically when YouTube API interface is loaded.
 function onYouTubeApiLoad() {
     gapi.client.setApiKey('AIzaSyCDVoSkVz-eAdA-FDGgzSIJ-Tl2-D9tJcg');
-
-    search();
+    
 }
 
 function search() {
     // Uses the JavaScript client library to create a search.list() API call.
-    var userSearch = document.getElementById('userSearch').innerHTML;
+    var userSearch = document.getElementById('userSearch').value;
     var request = gapi.client.youtube.search.list({
         part: 'snippet',
         q: userSearch,
