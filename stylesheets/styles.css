@@ -258,6 +258,10 @@ iframe {
   display: block;
 }
 
+#searchButton {
+  margin-bottom: 5px;
+}
+
 @media print, screen and (max-width: 960px) {
 
   div.wrapper {
