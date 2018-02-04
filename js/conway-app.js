@@ -102,6 +102,14 @@ $(document).ready( function(){
 		tick();
 	});
 
+	$("#clear").click(function(){
+		for (var f = 1; y < 20; y++){
+			for (var g = 1; z < 20; z++) {
+				board[f][g] = 0;
+			}
+		}
+	});
+
 	$(".col").click(function(){
 		var clicked = event.target.id;
 		var cell = clicked.split("-");
