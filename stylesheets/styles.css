@@ -266,6 +266,10 @@ iframe {
   margin: 0 auto;
 }
 
+#youtubeText {
+  margin: 2em 8em;
+}
+
 @media print, screen and (max-width: 960px) {
 
   div.wrapper {
