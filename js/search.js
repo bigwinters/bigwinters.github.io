@@ -6,7 +6,7 @@ function showResponse(response) {
     var responseString = JSON.stringify(response, '', 2);
     document.getElementById('response').innerHTML += responseString;
     document.getElementById('test').innerHTML += response.items[0].id.videoId;
-    document.getElementById('video').src = "https://www.youtube.com/embed/" + response.items[0].id.videoId;
+    document.getElementById('video').src = "https://www.youtube.com/embed/" + response.items[response.items.length-1].id.videoId;
 
 }
 
@@ -29,7 +29,7 @@ function search() {
         q: 'dessa',
         videoDuration: 'short',
         type: 'video',
-        maxResults: 1
+        maxResults: 5
     });
     
     // Send the request to the API server,
