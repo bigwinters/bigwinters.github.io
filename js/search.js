@@ -42,7 +42,7 @@ function onSearchResponse(response) {
     showResponse(response);
 }
 
-var input = document.getElementById("");
+var input = document.getElementById("userSearch");
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
