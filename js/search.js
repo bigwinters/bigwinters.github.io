@@ -42,10 +42,10 @@ function onSearchResponse(response) {
     showResponse(response);
 }
 
-window.onload=function(){
-  
-    var input = document.getElementById("userSearch");
 
+//Getting search to fire when Enter is pressed 
+window.onload=function(){  
+    var input = document.getElementById("userSearch");
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
     // Cancel the default action, if needed
@@ -57,4 +57,13 @@ window.onload=function(){
         }
     });
 }
+
+//Google Map Api
+ var map;
+ function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+                  zoom: 8
+                });
+    }
 
