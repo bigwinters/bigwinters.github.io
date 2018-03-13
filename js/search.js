@@ -42,15 +42,19 @@ function onSearchResponse(response) {
     showResponse(response);
 }
 
-var input = document.getElementById("userSearch");
+window.onload=function(){
+  
+    var input = document.getElementById("userSearch");
 
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Cancel the default action, if needed
-  event.preventDefault();
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Trigger the button element with a click
-    search();
-  }
-});
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Trigger the button element with a click
+            search();
+        }
+    });
+}
+
