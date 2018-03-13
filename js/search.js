@@ -41,3 +41,14 @@ function search() {
 function onSearchResponse(response) {
     showResponse(response);
 }
+
+document.getElementById('userSearch').bind("enterKey",function(e){
+ search();
+});
+$('textarea').keyup(function(e){
+if(e.keyCode == 13)
+{
+  $(this).trigger("enterKey");
+}
+});
+ 
