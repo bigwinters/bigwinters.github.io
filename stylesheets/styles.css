@@ -270,6 +270,10 @@ iframe {
   margin: 2em 8em;
 }
 
+#map {
+        height: 100%;
+      }
+
 @media print, screen and (max-width: 960px) {
 
   div.wrapper {
