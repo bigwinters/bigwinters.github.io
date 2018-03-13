@@ -271,8 +271,10 @@ iframe {
 }
 
 #map {
-        height: 100%;
-      }
+  height: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
 
 @media print, screen and (max-width: 960px) {
 
