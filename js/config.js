@@ -3,20 +3,20 @@ $(function() {
 	CMS.init({
 
 		// Name of your site or location of logo file ,relative to root directory (img/logo.png)
-		siteName: 'My Site',
+		siteName: 'Daniel Winters Blog',
 
 		// Tagline for your site
-		siteTagline: 'Your site tagline',
+		siteTagline: 'My personal blog',
 
 		// Email address
-		siteEmail: 'your_email@example.com',
+		siteEmail: 'hello@danielwinters.co.uk',
 
 		// Name
-		siteAuthor: 'Your Name',
+		siteAuthor: 'Daniel Winters',
 
 		// Navigation items
 		siteNavItems: [
-			{ name: 'Github', href: 'https://github.com/yourname', newWindow: false},
+			{ name: 'Github', href: 'https://github.com/bigwinters', newWindow: false},
 			{ name: 'About'}
 		],
 
