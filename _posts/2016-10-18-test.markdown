@@ -1,6 +1,0 @@
----
-published: true
-title: Test
-layout: post
----
-Hey. What's up. I'm trying to get a blog going again.
