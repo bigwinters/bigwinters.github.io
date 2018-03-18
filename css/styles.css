@@ -2,14 +2,14 @@
   font-family: 'Noto Sans';
   font-weight: 400;
   font-style: normal;
-  src: url('../fonts/Noto-Sans-regular/NotoSans-Regular.ttf');
+  src: url('../fonts/NotoSans-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Noto Sans';
   font-weight: 700;
   font-style: normal;
-  src: url('../fonts/Noto-Sans-regular/NotoSans-Regular.ttf');
+  src: url('../fonts/NotoSans-Regular.ttf');
 }
 
 
@@ -17,14 +17,14 @@
   font-family: 'Noto Sans';
   font-weight: 400;
   font-style: italic;
-   src: url('../fonts/Noto-Sans-regular/NotoSans-Regular.ttf');
+   src: url('../fonts/NotoSans-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Noto Sans';
   font-weight: 700;
   font-style: italic;
-  src: url('../fonts/Noto-Sans-regular/NotoSans-Regular.ttf');
+  src: url('../fonts/NotoSans-Regular.ttf');
 }
 
 body {
