@@ -42,7 +42,7 @@ var CMS = {
 			repo: 'yourrepo',
 		},
 		githubSettings: {
-			branch: 'gh-pages',
+			branch: '',
 			host: 'https://api.github.com'
 		}
 	},
