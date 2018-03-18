@@ -43,7 +43,7 @@ $(function() {
 		// to Github pages branch (gh-pages)
 		githubUserSettings: {
 			username: 'bigwinters',
-			repo: 'gh-pages'
+			repo: 'bigwinters.github.io'
 		}
 
 	});
