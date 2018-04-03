@@ -1,0 +1,145 @@
+#map {
+        height: 90%;
+        width: 90%;
+        margin: 0.5em auto;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .tripButtons {
+        margin: 0 0.5em;
+      }
+
+      #buttonRow{
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      /* The location pointed to by the popup tip. */
+      .popup-tip-anchor {
+        height: 0;
+        position: absolute;
+        /* The max width of the info window. */
+        width: 200px;
+      }
+      /* The bubble is anchored above the tip. */
+      .popup-bubble-anchor {
+        position: absolute;
+        width: 100%;
+        bottom: /* TIP_HEIGHT= */ 8px;
+        left: 0;
+      }
+      /* Draw the tip. */
+      .popup-bubble-anchor::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* Center the tip horizontally. */
+        transform: translate(-50%, 0);
+        /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+        width: 0;
+        height: 0;
+        /* The tip is 8px high, and 12px wide. */
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: /* TIP_HEIGHT= */ 8px solid white;
+      }
+      /* The popup bubble itself. */
+      .popup-bubble-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -100%);
+        /* Style the info window. */
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        font-family: sans-serif;
+        overflow-y: auto;
+        max-height: 60px;
+        box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+      }
+
+      #holyheadPopUp {
+        left: 5em;
+      }
+
+      #manchesterPopUp {
+        max-height: 7em;
+        text-align: center;
+      }
+
+      #causewayPopUp {
+        cursor: zoom-in;
+      }
+
+      #belfastPopUp {
+        cursor: pointer;
+      }
+
+      #yorkPopUp {
+        width: 29em;
+      }
+
+      #edinPopUp {
+        cursor: pointer;
+      }
+
+      #codeHostelPopUp {
+        width: 18em;
+      }
+
+      #edinGreenPopUp {
+        right: 8em;
+      }
+
+      .popUps {
+        cursor: default;
+      }
+
+      .finlandPopUps {
+        font-size: 9px;
+      }
+
+      #colognePopUp {
+        width: 180px;
+        left: -80px;
+      }
+
+      #berlinPopUp {
+        width: 170px;
+        left: 66px;
+      }
+
+      #hamburgPopUp {
+        left: -136px;
+        cursor: pointer;
+      }
+
+      #hamburgStartPopUp{
+        width: 80px;
+      }
+
+      #puttgardenPopUp{
+        cursor: pointer;
+      }
+
+      #ferryHold {
+        display: none;
+        margin: auto;
+        width: 25%;
+        position: absolute;
+        top: 25%;
+        left: 60%;
+      }
+
+      #fakeLink {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
