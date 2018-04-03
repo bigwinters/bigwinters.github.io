@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google Map API Experiments</title>
+    <link rel="stylesheet" type="text/css" href="css/map.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="popUps">
+      <div id="manchesterPopUp">All of my trips start and end here in Manchester, England. <br><br>Click any of the buttons to see details of my last three trips!</div>
+      <div id="holyheadPopUp" class="popUps">For this trip, I first got a train to Holyhead...</div>
+      <div id="dublinPopUp" class="popUps">so I could get the ferry to Dublin! <br>
+      While here, make sure you check out the amazing tour at <a href="http://kilmainhamgaolmuseum.ie/" target="_blank">Kilmainham Gaol</a>.</div>
+      <div id="dundalkPopUp" class="popUps">From here it's just a short, picturesque train ride up to Belfast.</div>
+      <div id="belfastPopUp" onclick="causewayZoom()">As well as the world famous <a href="http://titanicbelfast.com/" target="_blank">Titantic museum</a>, the winding backstreets of the Cathedral Quarter and some <a href="https://www.nationaltrust.org.uk/the-crown-bar" target="_blank">beautiful pubs</a>...</div>
+      <div id="causewayPopUp" onclick="causewayStreetView()">...it's also close to awe-inspiring Giant's Causeway.</div>
+      <div id="yorkPopUp" class="popUps">York is a beautiful old Roman town, and home to <a href="https://yorkminster.org/" target="_blank">The York Minster</a>, the <a href="www.nrm.org.uk/" target="_blank">National Railway Museum</a> and <a href="https://www.jorvikvikingcentre.co.uk/" target="_blank">Jorvik</a>. All well worth a visit!</div>
+      <div id="newcastlePopUp" class="popUps">Newcastle is probably the friendliest city I've ever been to! Beautiful archectiture down by the river also.</div>
+      <div id="edinPopUp" onclick="edinZoom()">The next step was Edinburgh! What a town!</div>
+      <div id="codeHostelPopUp" class="popUps">I stayed here in a <a href="https://www.codehostel.com/" target="_blank">pod hostel</a>. Great value for money and close to everything!</div>
+      <div id="edinInfoPopUp" class="popUps">Look at all these museums! And a castle!</div>
+      <div id="edinGreenPopUp" class="popUps">And lush green places to explore!</div>
+      <div id="parisPopUp" class="popUps finlandPopUps">London to Paris, via the Eurostar</div>
+      <div id="colognePopUp" class="popUps finlandPopUps">Paris to Cologne, a beautiful city cathedral city situated on the river Rhine</div>
+      <div id="berlinPopUp" class="popUps finlandPopUps">Overnight train from Cologne to Berlin. Didn't get much sleep, to be honest...</div>
+      <div id="hamburgPopUp" class="popUps finlandPopUps" onclick="ferryZoom()">Berlin to Hamburg, where I took my favourite train ride...on a boat!?</div>
+      <div id="hamburgStartPopUp" class="popUps finlandPopUps">The journey starts here in Hamburg and takes around 5 hours.</div>
+      <div id="puttgardenPopUp" class="finlandPopUps">After a couple of hours on the train you reach Puttgarden, whereupon it drives up into the hold of a ferry! <a id="fakeLink">Like this...</a></div>
+      <div id="rodbyPopUp" class="finlandPopUps">You land in Rødby, here...</div>
+      <div id="copenhagenPopUp" class="finlandPopUps">Before finally arriving in Copenhagen, here! You can watch Deutsch Bahn's (quite old) video about the journey <a href="https://www.youtube.com/watch?v=eLOhVxJj2fc" target="_blank">here</a></div>
+      <img src="http://www.danielwinters.co.uk/img/ferry.jpg" id="ferryHold">
+    </div>
+    <div id="buttonRow">
+      <input class="tripButtons" onclick="irelandTrip();" type=button value="My Ireland Trip">
+      <input class="tripButtons" onclick="scotlandTrip();" type=button value="My Scotland Trip">
+      <input class="tripButtons" onclick="finlandTrip();" type=button value="My Denmark Trip">
+    </div>
+    <script>
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgUhs7kzOC8MMnSEb6IPG9Hd3BOxsxHlA&callback=initMap">
+    </script>
+  </body>
+</html>
