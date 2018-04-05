@@ -6,13 +6,19 @@ $('.popUps').click(function(){
   tmpFunc();
 });
 
-$('#fakeLink').click(function(){
-  $('#ferryHold').show();
-  puttgardenPopUp.setMap(null);
-  hamburgStartPopUp.setMap(null);
-  rodbyPopUp.setMap(map);
-  copenhagenPopUp.setMap(map);
+
+/* Triggering Denmark image */
+
+$(document).ready(function(){ 
+  $('#fakeLink').click(function(){
+    $('#ferryHold').show();
+    puttgardenPopUp.setMap(null);
+    hamburgStartPopUp.setMap(null);
+    rodbyPopUp.setMap(map);
+    copenhagenPopUp.setMap(map);
+  });
 });
+
 
 /** Initializes the map and the custom popup. */
 function initMap() {
