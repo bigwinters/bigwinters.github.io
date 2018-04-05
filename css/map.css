@@ -11,7 +11,7 @@
       }
 
       .tripButtons {
-        margin: 0 0.5em;
+        margin: 0.5em 0.5em;
       }
 
       #buttonRow{
@@ -138,7 +138,7 @@
         left: 60%;
       }
 
-      #fakeLink {
+      .fakeLink {
         color: blue;
         text-decoration: underline;
         cursor: pointer;
