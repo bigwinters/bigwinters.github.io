@@ -6,11 +6,10 @@ $('.popUps').click(function(){
   tmpFunc();
 });
 
-
 /* Triggering Denmark image */
 
 $(document).ready(function(){ 
-  $('#fakeLink').click(function(){
+  $('#showFerry').click(function(){
     $('#ferryHold').show();
     puttgardenPopUp.setMap(null);
     hamburgStartPopUp.setMap(null);
@@ -20,6 +19,7 @@ $(document).ready(function(){
 });
 
 
+
 /** Initializes the map and the custom popup. */
 function initMap() {
   definePopupClass();
@@ -27,8 +27,7 @@ function initMap() {
   manchesterPopUp = new Popup(
     new google.maps.LatLng(53.455203, -2.114613),
     document.getElementById('manchesterPopUp')
-  );
-  
+  );  
 
   holyheadPopUp = new Popup(
     new google.maps.LatLng(53.309441, -4.633038),
@@ -123,9 +122,7 @@ function initMap() {
  copenhagenPopUp = new Popup(
     new google.maps.LatLng(55.676097, 12.568337),
     document.getElementById('copenhagenPopUp')
-  );
-
-     
+  );    
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 53.455203, lng: -2.114613},
