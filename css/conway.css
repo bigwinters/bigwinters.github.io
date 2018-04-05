@@ -13,23 +13,20 @@ h1 {
 
 #board {
 	margin: 4em auto 0.5em auto;
-    	padding: 0 4em 0 4em;
+    	padding: 0 1.5em 0 1.5em;
 	max-width: 58em;
-}
-
-#buttons {
-	
 }
 
 #left-button {
 	float: right;
-	text-align: right;
+	text-align: center;
 	padding: 1em;
 }
 
 #right-button {
 	float: left;
 	padding: 1em;
+	text-align: center;
 }
 
 #centre-button {
