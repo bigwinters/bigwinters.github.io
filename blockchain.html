@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>Baby's First Blockchain</title>
+
+    <!-- Required Stylesheets -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+    />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    
+
+    <style> 
+        .container:nth-child(5) {
+          transition: opacity 0.25s;
+        }
+
+        .card-body {
+          line-height: 1.6;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Our application root element -->
+    <div id="app">
+      <b-container>
+        <b-jumbotron class="pb-1" header="Baby's First Blockchain" lead="Blockchains....what are they?">
+          <p>As some unhelpful person once put "Blockchains are just chains of blocks". But what is a 'block'? Or a chain, for that matter?</p>
+          <p>First thing's first, a block can be any piece of data. When we think of Blockchains our minds automatically leap to Bitcoin and other cryptocurrencies. In their cases the data would be how much Bitcoin one particular account sent another one.</p>
+          <p>That data can be anything though, ranging from <a href="https://www.gov.uk/government/news/hm-land-registry-to-explore-the-benefits-of-blockchain" target="_blank">land registery</a>, <a href="https://fortune.com/2017/09/05/maersk-blockchain-insurance/" target="_blank">insurance documents</a> or <a href="https://ujomusic.com/" target="_blank">music royalities.</a></a></p>
+          <p>In this case we're just going to use nice and simple text. Put in your name and some example data below and we'll get started.</p>
+          <p><em>I will not be saving any of this data, but please do not put in any personal data regardless.</em></p>
+        </b-jumbotron>
+
+        <b-input-group prepend="Author Name" class="mt-4" size="lg">
+            <b-form-input v-model.trim="author"></b-form-input>
+        </b-input-group>
+        <div v-if="name_error.length > 0">
+            <b-alert show variant="danger">Please type in your name, so we know who authored this block!</b-alert>
+        </div>
+
+        <b-input-group prepend="Contents of Block" class="mt-4" size="lg">
+            <b-form-input v-model.trim="block"></b-form-input>
+            <b-input-group-append>
+              <b-button variant="outline-success" @click="create_Block">Create Block</b-button>
+            </b-input-group-append>
+        </b-input-group>
+        <div v-if="block_error.length > 0">
+            <b-alert show variant="danger">Please give this block some data!</b-alert>
+        </div>
+      <br/>
+      </b-container>
+      <new-block v-for="chain in chains" :edit="edit" :chain="chain"/>
+      
+    </div>
+ 
+
+    <!-- Start running your app -->
+    <script>
+      
+
+      Vue.component('new-block', {
+        template: `  
+          <b-container>
+            <div>
+              <b-card>
+                <h3>Block Number {{chain.id}}</h3>
+                  <b-card-text>
+                    <span v-html="chain.intro"></span>
+                    <span class="block-text"  v-if="chain.id === 1 || chain.id === 4 || chain.id === 5"></span>                 
+                    <div v-else-if="chain.id === 3">
+                        <br/>               
+                        <b-input-group style="width: 50%;" >
+                          <b-form-input v-model="edit"></b-form-input>
+                          <template v-slot:append>
+                              <b-button variant="outline-danger" @click="editBlock">Edit Block</b-button>
+                          </template>                          
+                        </b-input-group>
+                        <div v-if="edit_error" class="mb-0">
+                          <b-alert show variant="danger">You didn't actually change this, did you...</b-alert>
+                        </div>
+                        <div v-if="changed">
+                          <b-alert show variant="success" class="mb-0">
+                          Changing the data in this block will mean that the hash in the subsquent block will no longer match. And if they do not match, you will not be allowed to add any new chains to the blockchain. This is how the blockchain protects itself from being changed, either errornoeusly or maliciously.<br/><br/>
+                          New Hash = {{new_hash}}<br/>
+                          Old Hash = {{old_hash}}<br/>
+                          </b-alert>
+                        </div>
+                    </div>
+                    <span class="block-text" v-html="chain.text" v-else></span><br/><br/>
+                    Created by: {{chain.author}}<br/>
+                    Created on: {{chain.date}}<br/>
+                    Hash of previous block: {{chain.hash}}
+                  </b-card-text>
+                </b-card>
+              </div>
+              <br/>
+        </b-container>
+        `,
+        props: {
+          chain: Object,
+          edit: String
+        },
+        methods: {
+          editBlock: function () {
+            if (this.edit === app.chains[2].text.toLocaleString() && !this.changed){
+              this.edit_error = 'You didn"t actually change this, did you...';
+              console.log('didnt change');
+            } else {
+              this.changed = true;
+              this.edit_error = '';
+              this.new_hash = CryptoJS.AES.encrypt(this.edit, app.chains[app.chains.length-1].date).toString();
+              this.old_hash = app.chains[3].hash;
+              this.edit = this.block;
+              var encrypted = CryptoJS.AES.encrypt(app.chains[app.chains.length-1].text, app.chains[app.chains.length-1].date).toString();
+              setTimeout(function () { var encrypted = CryptoJS.AES.encrypt(app.chains[app.chains.length-1].text, app.chains[app.chains.length-1].date).toString();}.bind(this), 1000)
+                var time = new Date();
+                time.setSeconds(time.getSeconds() + 10);
+                time = time.toLocaleString();
+                app.chains.push({
+                  id: 5,
+                  intro: 'And that\'s basically it! Hopefully now you understand Baby\'s First Blockchain. Just remember, at it\s core Blockchains are just databases that are interlocked to be more secure. That\'s it!<br/><br/>Everything here has been made with <a href="https://vuejs.org/" target="_blank">Vue JS</a>, <a href="https://bootstrap-vue.js.org/" target="_blank">Vue JS Bootstrap</a> and <a href="https://www.npmjs.com/package/crypto-js" target="_blank">Crypto JS</a>.<br/><br/>Cheers!',
+                  text: 'thanks for all the fish',
+                  author: 'Daniel Winters',
+                  date: time,
+                  hash: encrypted
+                })
+            }
+          }
+        },
+        data: function () {
+          return {
+            edit_error: '',
+            changed : false,
+            new_hash: '',
+            old_hash: ''
+          }
+        }
+      });
+
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          chains : [
+            {
+              id: 1,
+              intro: 'This is the Genesis Block. Each block will have and id, which is the position in the chain (so, 1 in this case), some data, a timestamp of when it was made, and the hash of the previous block. <br/><br/> The hash is created by combining the data and timestamp of the previous block in the chain and then encrypting it into a series of numbers and letters. With this being the Genesis block though, there is no previous block. So, in this case, the hash is blank. <br/><br/> Try adding a few blocks now, to see the hashes be populated.',
+              text: 'Hello world',
+              author: 'Daniel Winters',
+              date: '11/10/2019, 16:01:32',
+              hash: ''
+            }
+            ],
+          block : '',
+          author: '',
+          intro: '',
+          name_error : [],
+          block_error: [],
+          edit:'edit'
+        },
+        methods: {
+          create_Block: function () {
+            var encrypted = CryptoJS.AES.encrypt(this.chains[this.chains.length-1].text, this.chains[this.chains.length-1].date).toString();
+            if (this.block && this.author){
+              var time = new Date().toLocaleString();
+              this.chains.push({
+                id: this.chains.length + 1,
+                text: this.block,
+                author: this.author,
+                date: time,
+                hash: encrypted
+              })
+              if (this.chains.length + 1 == 4){
+                this.edit = this.block;
+                console.log(app.edit);
+                var encrypted = CryptoJS.AES.encrypt(this.chains[this.chains.length-1].text, this.chains[this.chains.length-1].date).toString();
+                setTimeout(function () { var encrypted = CryptoJS.AES.encrypt(this.chains[this.chains.length-1].text, this.chains[this.chains.length-1].date).toString();}.bind(this), 1000)
+                  var time = new Date();
+                  time.setSeconds(time.getSeconds() + 10);
+                  time = time.toLocaleString();
+                  this.chains.push({
+                    id: 4,
+                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\'s validity. Blockchains can be enigeered to only allow new blocks once every user has verified a previous block, or 75% of the userbase, 50% of users, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now this block has been created, with a hash of the previous block, go back and try and change the data of the block above.',
+                    text: 'goodbye world',
+                    author: 'Daniel Winters',
+                    date: time,
+                    hash: encrypted
+                  })
+              }
+              this.block = '';
+            } else {
+              this.name_error = [];
+              this.block_error = [];
+              if (!this.block){
+                this.block_error.push('Please give this block some data.');
+              }
+              if (!this.author){
+                this.name_error.push('Please type your name in, so we know who authored this new block.');
+              }
+           }
+          }
+        }
+      });
+
+    </script>
+  </body>
+</html>
