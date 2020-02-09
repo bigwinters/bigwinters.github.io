@@ -46,8 +46,8 @@
       <b-container>
         <b-jumbotron class="pb-1" header="Baby's First Blockchain" lead="Blockchains....what are they?">
           <p>As some unhelpful person once put "Blockchains are just chains of blocks". But what is a 'block'? Or a chain, for that matter?</p>
-          <p>First thing's first, a block can be any piece of data. When we think of Blockchains our minds automatically leap to Bitcoin and other cryptocurrencies. In their cases the data would be how much Bitcoin one particular account sent another one.</p>
-          <p>That data can be anything though, ranging from <a href="https://www.gov.uk/government/news/hm-land-registry-to-explore-the-benefits-of-blockchain" target="_blank">land registery</a>, <a href="https://fortune.com/2017/09/05/maersk-blockchain-insurance/" target="_blank">insurance documents</a> or <a href="https://ujomusic.com/" target="_blank">music royalities.</a></a></p>
+          <p>First thing's first, a block can be any piece of data. When we think of Blockchains our minds amy leap to Bitcoin and other cryptocurrencies, but it doesn't have to be financially based. In their cases, the data would be how much Bitcoin one specifc account sent another specific account.</p>
+          <p>That data can be anything though, such as <a href="https://www.gov.uk/government/news/hm-land-registry-to-explore-the-benefits-of-blockchain" target="_blank">land registery</a>, <a href="https://fortune.com/2017/09/05/maersk-blockchain-insurance/" target="_blank">insurance documents</a> or <a href="https://ujomusic.com/" target="_blank">music royalities.</a></a></p>
           <p>In this case we're just going to use nice and simple text. Put in your name and some example data below and we'll get started.</p>
           <p><em>I will not be saving any of this data, but please do not put in any personal data regardless.</em></p>
         </b-jumbotron>
@@ -56,7 +56,7 @@
             <b-form-input v-model.trim="author"></b-form-input>
         </b-input-group>
         <div v-if="name_error.length > 0">
-            <b-alert show variant="danger">Please type in your name, so we know who authored this block!</b-alert>
+            <b-alert show variant="danger">Please type in your name! We need this to tell who authored this block!</b-alert>
         </div>
 
         <b-input-group prepend="Contents of Block" class="mt-4" size="lg">
@@ -66,7 +66,7 @@
             </b-input-group-append>
         </b-input-group>
         <div v-if="block_error.length > 0">
-            <b-alert show variant="danger">Please give this block some data!</b-alert>
+            <b-alert show variant="danger">Please give this block some data! Any old combination of letters and numbers will do.</b-alert>
         </div>
       <br/>
       </b-container>
@@ -165,7 +165,7 @@
           chains : [
             {
               id: 1,
-              intro: 'This is the Genesis Block. Each block will have and id, which is the position in the chain (so, 1 in this case), some data, a timestamp of when it was made, and the hash of the previous block. <br/><br/> The hash is created by combining the data and timestamp of the previous block in the chain and then encrypting it into a series of numbers and letters. With this being the Genesis block though, there is no previous block. So, in this case, the hash is blank. <br/><br/> Try adding a few blocks now, to see the hashes be populated.',
+              intro: 'This is the Genesis Block. Each block will have an id, some data, a timestamp of when it was made, and the hash of the previous block. <br/><br/> The ID is the position the block has in the chain at large, meaning that this block has an ID of 1. The data can be anything, like whatever you typed in above, and the hash is created by combining the data and timestamp of the previous block in the chain and then encrypting it into a series of numbers and letters. With this being the Genesis block though, there is no previous block. So in this case, the hash is blank. <br/><br/> Try adding a few blocks now. You should see the hashes be populated in all subsequent blocks',
               text: 'Hello world',
               author: 'Daniel Winters',
               date: '11/10/2019, 16:01:32',
@@ -201,7 +201,7 @@
                   time = time.toLocaleString();
                   this.chains.push({
                     id: 4,
-                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\'s validity. Blockchains can be enigeered to only allow new blocks once every user has verified a previous block, or 75% of the userbase, 50% of users, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now this block has been created, with a hash of the previous block, go back and try and change the data of the block above.',
+                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\'s validity. Blockchains can be enigeered to only allow new blocks to be created once every user has verified a previous block, but this can be changed to 75% of the userbase, 50% of all current users, all of the appointed admins, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now that this block has been created, which includes a hash of the previous block, go back and try and change the data of the block above.',
                     text: 'goodbye world',
                     author: 'Daniel Winters',
                     date: time,
