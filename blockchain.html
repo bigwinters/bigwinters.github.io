@@ -65,7 +65,7 @@
               <b-button variant="outline-success" @click="create_Block">Create Block</b-button>
             </b-input-group-append>
         </b-input-group>
-        <div v-if="block_error.length > 1">
+        <div v-if="block_error.length > 0">
             <b-alert show variant="danger">Please give this block some data! Any old combination of letters and numbers will do.</b-alert>
         </div>
       <br/>
@@ -182,6 +182,7 @@
         methods: {
           create_Block: function () {
             var encrypted = CryptoJS.AES.encrypt(this.chains[this.chains.length-1].text, this.chains[this.chains.length-1].date).toString();
+			var posted = false;
             if (this.block && this.author){
               var time = new Date().toLocaleString();
               this.chains.push({
@@ -210,10 +211,11 @@
               }
               this.block = '';
 			  this.block_error.pop();
+			  posted = true;
             } else {
               this.name_error = [];
               this.block_error = [];
-              if (!this.block){
+              if (!this.block && !posted){
                 this.block_error.push('Please give this block some data.');
               } else {
 			   this.block_error.pop();
