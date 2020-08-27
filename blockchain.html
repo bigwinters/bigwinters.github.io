@@ -139,7 +139,7 @@
                 time = time.toLocaleString();
                 app.chains.push({
                   id: 5,
-                  intro: 'And that\'s basically it! Hopefully now you understand Baby\'s First Blockchain. Just remember, at it\s core Blockchains are just databases that are interlocked to be more secure. That\'s it!<br/><br/>Everything here has been made with <a href="https://vuejs.org/" target="_blank">Vue JS</a>, <a href="https://bootstrap-vue.js.org/" target="_blank">Vue JS Bootstrap</a> and <a href="https://www.npmjs.com/package/crypto-js" target="_blank">Crypto JS</a>.<br/><br/>Cheers!',
+                  intro: 'And that\'s basically it! Hopefully now you understand a little more about the concept of Blockchains. And if you get stuck, just remember: at it\s core Blockchains are just databases that are interlocked to be more secure. That\'s it!<br/><br/>Everything here has been made with <a href="https://vuejs.org/" target="_blank">Vue JS</a>, <a href="https://bootstrap-vue.js.org/" target="_blank">Vue JS Bootstrap</a> and <a href="https://www.npmjs.com/package/crypto-js" target="_blank">Crypto JS</a>.<br/><br/>Cheers!',
                   text: 'thanks for all the fish',
                   author: 'Daniel Winters',
                   date: time,
@@ -165,7 +165,7 @@
           chains : [
             {
               id: 1,
-              intro: 'This is the Genesis Block. Each block will have an id, some data, a timestamp of when it was made, and the hash of the previous block. <br/><br/> The ID is the position the block has in the chain at large, meaning that this block has an ID of 1. The data can be anything, like whatever you typed in above, and the hash is created by combining the data and timestamp of the previous block in the chain and then encrypting it into a series of numbers and letters. With this being the Genesis block though, there is no previous block. So in this case, the hash is blank. <br/><br/> Try adding a few blocks now. You should see the hashes be populated in all subsequent blocks',
+              intro: 'This is the Genesis Block. Each block will have an id, some data, a timestamp of when it was made, and the hash of the previous block. <br/><br/> The ID is the position the block has in the chain at large, meaning that this block has an ID of 1. The hash is created by combining the data and timestamp of the previous block in the chain and then encrypting it into a series of numbers and letters. With this being the Genesis block though, there is no previous block. So in this case, the hash is blank. <br/><br/> Try adding a few blocks now. You should see the hashes be populated in all subsequent blocks.',
               text: 'Hello world',
               author: 'Daniel Winters',
               date: '11/10/2019, 16:01:32',
@@ -201,7 +201,7 @@
                   time = time.toLocaleString();
                   this.chains.push({
                     id: 4,
-                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\'s validity. Blockchains can be enigeered to only allow new blocks to be created once every user has verified a previous block, but this can be changed to 75% of the userbase, 50% of all current users, all of the appointed admins, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now that this block has been created, which includes a hash of the previous block, go back and try and change the data of the block above.',
+                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\'s validity. At it's most secure, Blockchains can be engineered to only allow new blocks to be created once every user has verified a previous block, but this can be changed to 75% of the userbase, 50% of all current users, all of the appointed admins, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now that this block has been created, which includes a hash of the previous block, go back and try and change the data of the block above.',
                     text: 'goodbye world',
                     author: 'Daniel Winters',
                     date: time,
@@ -214,10 +214,14 @@
               this.block_error = [];
               if (!this.block){
                 this.block_error.push('Please give this block some data.');
-              }
+              } else {
+			   this.block_error.pop();
+			  }
               if (!this.author){
                 this.name_error.push('Please type your name in, so we know who authored this new block.');
-              }
+              } else {
+			  this.name_error.pop()
+			  }
            }
           }
         }
