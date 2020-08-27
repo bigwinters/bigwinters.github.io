@@ -182,6 +182,7 @@
         methods: {
           create_Block: function () {
             var encrypted = CryptoJS.AES.encrypt(this.chains[this.chains.length-1].text, this.chains[this.chains.length-1].date).toString();
+			var posted = chains.length;
             if (this.block && this.author){
               var time = new Date().toLocaleString();
               this.chains.push({
@@ -212,7 +213,7 @@
             } else {
               this.name_error = [];
               this.block_error = [];
-              if (!this.block){
+              if (posted == chains.length){
                 this.block_error.push('Please give this block some data.');
               } else {
 			   this.block_error.pop();
