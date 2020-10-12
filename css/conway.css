@@ -33,3 +33,13 @@ h1 {
 	text-align: center;
 	padding: 1em;
 }
+
+.row .col {
+	height: 2em;
+}
+
+@media all and (min-width:319px) and (max-width: 480px) {
+	.row .col {
+    	height: 0.8em;
+    }
+}
