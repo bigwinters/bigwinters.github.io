@@ -435,17 +435,39 @@
         </div>
       </div>
     </div>
-    <p>John Conway invented The Game of Life in 1970, following his interest in a previous mathematician's research into machine’s being able to create copies of themselves. The rules are simple:</p>
+    <p>John Conway's Game of Life is not really a game at all, but is more of a simulation of life. It replicates the processes that all living organisms experience: birth, recreation and death.
+         The rules are simple:</p>
     <ul>
-      <li>Any live cell with one neighbour or less dies through underpopulation.</li>
-      <li>If a live cell has more than three neighbours it perishes through overpopulation.</li>
+      <li>Any live cell with one neighbour or less dies due to underpopulation.</li>
+      <li>If a live cell has more than three neighbours it perishes because of overcrowding.</li>
       <li>Live cells need either two or three neighbours to survive to the next generation.</li>
       <li>If an empty cell is surrounded by exactly three live cells, life occurs.</li>
     </ul>
-    <p>Feel free to play around with my version! Clicking on any cell will change it from dead to alive and back again. You can either step through a generation to see what happens, or run through the next 50 generations.</p>
-    <p>To check out some of my other code examples you can go <a href="/examples">here</a></p>
-    <p>Or to go back to my home page click <a href="/">here</a></p>
-
+    <p>The simplicity of these rules shroud the immense depth of the cell sequences that can be produced. Whole communities of cells can sporadically flicker in and out of existance, some breaking
+    off to form their own groups, some finding stable patterns that can never be broken. Three simple examples of possible cell outcomes are:</p>
+    <div class="container mt-4 mb-4">
+        <div class="row">
+          <div class="col-sm">
+              <div><em>Oscillators - Patterns that recreate themselves indefinitely.</em></div>
+              <img src="https://raw.githubusercontent.com/bigwinters/bigwinters.github.io/master/img/conway_spin.gif" class="img-fluid mx-auto mt-3 mb-3 d-block" style="height: 164px" alt="Game of Life - Spinner">
+          </div>
+          <div class="col-sm">
+              <div><em>Still Life - A group that remains static until influenced by another group.</em></div>
+              <img src="http://www.danielwinters.co.uk/img/conway_still_life.gif" class="img-fluid mx-auto mt-3 mb-3 d-block" style="height: 164px" alt="Game of Life - Still Life">
+          </div>
+          <div class="col-sm">
+              <div><em>Gliders - A pattern which returns to it's initial state, despite movement.</em></div>
+              <img src="https://raw.githubusercontent.com/bigwinters/bigwinters.github.io/master/img/conway_glider.gif" class="img-fluid mx-auto mt-3 mb-3 d-block" style="height: 164px" alt="Game of Life - Glider">
+          </div>
+        </div>
+      </div>
+    <p>The initial state of the Cells is called Pulsar, and it's origins can be found <a href="https://www.conwaylife.com/wiki/Pulsar" target="_blank">here.</a>
+    <p>Please feel free to play around with my version. Clicking on any cell will change it from dead to alive and back again. You can either step through a generation to see what happens, or run through the next 10 generations.
+    Should your cells ever reach a stagnant point where life can neither be created or perish, the simulation will stop and you can alter the cells.</p>
+    <p>To check out some of my other code examples you can go <a href="/examples">here</a>.</p>
+    <p>Or to go back to my home page click <a href="/">here</a>.</p>
+    <strong style="display: block; text-align: center;">John Conway FRS 1937 - 2020</strong>
   </div>
   </body>
 </html>
+
