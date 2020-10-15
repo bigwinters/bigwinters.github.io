@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Daniel Winters - UX Writing Examples</title>
+  </head>
+  <body>
+      <div class="jumbotron bg-transparent text-dark">
+          <h1 class="display-4 font-weight-normal">Updating the Game of Life.</h1>
+          <br/>
+          <p class="lead">A couple of years ago I coded up my own version of John Conways 'Game of Life'. Now, I'm updating it.</p>
+          <br/>
+          <div class="container-fluid border-top mb-2 pb-2 pl-5 pr-5 pt-3">
+            <p>A couple of years ago I was looking for a job that was more technical. I could potter about a bit in HTML and CSS, and I had done enough CodeAcademy courses
+            to be dangerous in Javascipt, but I didn't have any proof of my expertise. I needed Code Examples. I banged out a few simple ones, such as the classic <a href="https://en.wikipedia.org/wiki/Fizz_buzz" target="_blank">
+            Fizz Buzz</a> and some text manipulation functions that flipped around all the letters in words or tested if a word was a pallindrome or whatever. Little frivolities. It was only after
+            I simulated the shuffle of a deck of card that I was reminded of something a bit more substanial. Something that'd be a real, interesting challenge to code.</p>
+            <p>This was Conway's Game of Life, and my version can be found here: <a href="http://www.danielwinters.co.uk/conway">www.danielwinters.co.uk/conway</a>
+            <p>This is the updated version, however. To find the old version, you must venture over to <a href="http://www.danielwinters.co.uk/conway-old">www.danielwinters.co.uk/conway-old.</a>
+            <p>After the update I wanted to just write about exactly what I have changed, and why I've changed it.
+            <h4>Writing Updates</h4>
+            <p>One of the main things I noticed is that the page seemed quite overwhelming at first. I made the following changes in an attempt to introduce the concept in a gentler way, and hopefully
+                encourage the user to stay around longer to fully understand the imposing simulation at the top of the page.
+            <img src="https://raw.githubusercontent.com/bigwinters/bigwinters.github.io/master/img/conway-changes.png" class="img-fluid mt-1 mb-3" style="width: 80em" alt="Responsive image">
+            <p>After these changes I added a reference to the Pulsar pattern at the top of the page, that could lead users to the wider world of Conway's Game of Life. Also, it demonstrates
+            just how that wide world is. So wide that large patterns like this have not only been discovered, but have be given proper names that deserve proper credit.</p>
+            <p>I've toned down the 'play around!' sentence a bit, and have elborated on the features of the simulation a bit more beneath this. The initial tone was more playful, but on reflection I found it
+                didn't really match the more refined nature of the simulation, and also came off as pandering. Finally, at the bottom of the page
+            I've added a memorial to John Conway himself, who sadly passed away due to COVID-19. I wanted this to be as tasteful as possible.</p>
+            <h4>Code Updates</h4>
+            <ul>
+                  <li><strong>Reduced the amount of generations you can simulate from 50 to 10</strong> - This is to prevent the user from having to sit there for around 20 seconds watching
+                  a very uninteresting simulation.</li>
+                  <li><strong>Added ability that stops simulation should the cells get stagnant e.g. no cells can die or be created</strong> - When testing it I ran into multiple simulations where cells would devolve into static patterns that could not be changed.
+                  Sitting there and watching a 'still life' was quite boring, so I made sure to prevent this from happening going forwards.</li>
+            </ul>
+            <br/><br/>
+
+        </p>
+          </div>
+          <div class="container-fluid bg-light border-top border-bottom text-center mb-2 pb-2 pt-3">
+              <ul style="list-style: none;">
+                    <li>To return to the homepage, click <a href="/">here</a></li>
+                    <li>To see some of my other ux writing samples, click <a href="/ux">here</a></li>
+                    <li>To see some of my coding examples, click <a href="/examples">here</a></li>
+              </ul>
+          </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
