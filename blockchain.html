@@ -28,9 +28,9 @@
     <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    
 
-    <style> 
+
+    <style>
         .container:nth-child(5) {
           transition: opacity 0.25s;
         }
@@ -71,30 +71,30 @@
       <br/>
       </b-container>
       <new-block v-for="chain in chains" :edit="edit" :chain="chain"/>
-      
+
     </div>
- 
+
 
     <!-- Start running your app -->
     <script>
-      
+
 
       Vue.component('new-block', {
-        template: `  
+        template: `
           <b-container>
             <div>
               <b-card>
                 <h3>Block Number {{chain.id}}</h3>
                   <b-card-text>
                     <span v-html="chain.intro"></span>
-                    <span class="block-text"  v-if="chain.id === 1 || chain.id === 4 || chain.id === 5"></span>                 
+                    <span class="block-text"  v-if="chain.id === 1 || chain.id === 4 || chain.id === 5"></span>
                     <div v-else-if="chain.id === 3">
-                        <br/>               
+                        <br/>
                         <b-input-group style="width: 50%;" >
                           <b-form-input v-model="edit"></b-form-input>
                           <template v-slot:append>
                               <b-button variant="outline-danger" @click="editBlock">Edit Block</b-button>
-                          </template>                          
+                          </template>
                         </b-input-group>
                         <div v-if="edit_error" class="mb-0">
                           <b-alert show variant="danger">You didn't actually change this, did you...</b-alert>
@@ -208,7 +208,9 @@
                     date: time,
                     hash: encrypted
                   })
+                  setTimeout(function(){ window.scrollBy(0, 5000) }, 500);
               }
+
               this.block = '';
 			  this.block_error.pop();
 			  posted = true;
