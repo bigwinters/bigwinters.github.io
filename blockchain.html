@@ -89,7 +89,11 @@
                     <span v-html="chain.intro"></span>
                     <span class="block-text"  v-if="chain.id === 1 || chain.id === 4 || chain.id === 5"></span>
                     <div v-else-if="chain.id === 3">
-                        <br/>
+                        <div id="explain" style="padding-bottom: 0.5em;line-height: 2em;">
+                            <strong>So,</strong> hopefully you understand the basics now. Let's take it up a notch now though, and introduce the blockchain's true potential: it's security.<br/>
+                            Below is the second block that you created. What I would like you to do now is attempt to go in and edit that data you submitted.
+                            <br/>
+                        </div>
                         <b-input-group style="width: 50%;" >
                           <b-form-input v-model="edit"></b-form-input>
                           <template v-slot:append>
@@ -97,19 +101,19 @@
                           </template>
                         </b-input-group>
                         <div v-if="edit_error" class="mb-0">
+                            <br/>
                           <b-alert show variant="danger">You didn't actually change this, did you...</b-alert>
                         </div>
                         <div v-if="changed">
+                          <br/>
                           <b-alert show variant="success" class="mb-0">
                           Changing the data in this block will mean that the hash in the subsquent block will no longer match. And if they do not match, you will not be allowed to add any new chains to the blockchain.
                           This is how the blockchain protects itself from being changed, either errornoeusly or maliciously.
-                          <br/><br/>
-			  As each block contains the hash for the previous block,
-                          which in turns holds the hash from the block before it, it forms a link of accountability and trust between the blocks. To hack one block, you have to hack them all. At the same time!<br/><br/>
+                          <br/>
                           Old Hash = {{old_hash}}<br/>
                           New Hash = {{new_hash}}<br/>
-                          <br/>                          
-                          I've added one more block now. You'll find it in it's rightful place at the end of the chain!
+                          <br/>
+                          It seems that a mysterious stranger has dropped in and created a block beneath this one now, but I've added one more block myself. You'll find it, in it's rightful place, at the end of the chain!
                           </b-alert>
                         </div>
                     </div>
@@ -175,7 +179,7 @@
               text: 'Hello world',
               author: 'Daniel Winters',
               date: '11/10/2019, 16:01:32',
-              hash: ''
+              hash: 'null'
             }
             ],
           block : '',
@@ -198,6 +202,7 @@
                 date: time,
                 hash: encrypted
               })
+
               if (this.chains.length + 1 == 4){
                 this.edit = this.block;
                 console.log(app.edit);
@@ -208,13 +213,17 @@
                   time = time.toLocaleString();
                   this.chains.push({
                     id: 4,
-                    intro: 'In an actual block chain there will be lots of different people adding blocks, all of whom are checking the blockchain\s validity. At it\s most secure, Blockchains can be engineered to only allow new blocks to be created once every user has verified a previous block, but this can be changed to 75% of the userbase, 50% of all current users, all of the appointed admins, etc.<br/><br/>Blockchains are designed to be immutable, which is a fancy word for "unchangeable". Now that this block has been created, which includes a hash of the previous block, go back and try and change the data of the block above.',
+                    intro: 'Konnichiwa, it\'s me <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank">Satoshi Nakamoto</a>, just dropping by to add a little block of my own. I\'ve briefly reemerged from reclusion after creating Bitcoin, and subsquently implementing the world\'s first blockchain, to help Dan explain just why blockchains are so bloody secure. <br/><br/> Blockchains are designed to be immutable, which is just a fancypants word for \'unchangeable.\' As each block contains the hash of the previous block, it creates a link of accountability that stretches all the way back to the intial block. If you want to hack one block, you\'ve got to hack them all. At the same time.<br/><br/> On top of this, if you want to add a new block into the Bitcoin blockchain you have to check the validity of all the blocks that are already in the blockchain. With thousands and thousands of users constantly checking that each hash correctly contains the data from the block before it, all the way back to the creation of the chain, it is virtually impossible for anyone to mess around with any data along the way. It may take a while, but that reliablity is worth it. No question.<br/><br/> And with this little lesson in data security now over, I\'m off! Back into obscurity! Satoshi, out!',
                     text: 'goodbye world',
-                    author: 'Daniel Winters',
+                    author: 'Satoshi Nakamoto',
                     date: time,
                     hash: encrypted
                   })
-                  setTimeout(function(){ window.scrollBy(0, 5000) }, 500);
+                  setTimeout(function(){window.scrollBy({
+                      top: 600, // could be negative value
+                      left: 0,
+                      behavior: 'smooth'
+                    }); }, 500);
               }
 
               this.block = '';
