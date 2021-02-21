@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My first Vue app</title>
+    <!-- Required Stylesheets -->
+    <link
+        type="text/css"
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+        type="text/css"
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+        />
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #gallery{
+            height: 30em;
+        }
+
+        #number_row .number{
+            border: solid 1px black;
+            width: 2em;
+            font-size: 4em;
+            text-align: center;
+            line-height: 1;
+            min-height: 2em;
+            padding-top: 0.5em;
+        }
+
+        .duck_row{
+            height: 10em;
+        }
+
+        .target-number{
+            height: 1em;
+            width: 1em;
+            font-size: 4em;
+            font-family: impact;
+            margin-top: 1.1em;
+            margin-left: 0.9em;
+            width: 70px;
+            height: 70px;
+            background: white;
+            -moz-border-radius: 35px;
+            -webkit-border-radius: 35px;
+            border-radius: 35px;
+            text-align: center;
+            line-height: 1;
+            transform: inherit;
+            border: 4px solid black;
+        }
+
+        .target{
+            /* position: absolute; */
+            width: 150px;
+            height: 146px;
+            cursor: pointer;
+            user-select: none;
+            background-color: #ffffff;
+            background: url(rubberduck.png) repeat 0 0;
+            background-size: 150px 146px;
+        }
+
+        .right{
+            position: relative;
+            transform: scaleX(-1);
+            left: 85%;
+            animation-name: moveleft;
+            animation-duration: 6s;
+            -webkit-animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes moveleft {
+          0%   {left:85%;}
+          100% {left: -1em; visibility: hidden;}
+        }
+
+        .left{
+            position: relative;
+            animation-name: moveright;
+            animation-duration: 6s;
+            -webkit-animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+            left: 1em;
+        }
+
+        @keyframes moveright {
+          0%   {left:1em;}
+          100% {left:85%; visibility: hidden;}
+        }
+
+
+        .hide {
+            visibility: hidden !important;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+
+        <div id="gallery" class="container-fluid mb-4 pl-5 pr-5 mt-3">
+            <div class="row duck_row" id="top-row">
+                <target
+                  v-for="target in toptargets" :target = "target" :numbers_chosen = "numbers_chosen" :numbers_full = "numbers_full"
+                ></target>
+            </div><!-- top row -->
+
+            <div class="row duck_row" id="middle-row">
+                <target
+                  v-for="target in middletargets" :target = "target" :numbers_chosen = "numbers_chosen" :numbers_full = "numbers_full"
+                ></target>
+            </div><!-- middle row -->
+
+            <div class="row duck_row" id="bottom-row">
+                <target
+                  v-for="target in bottomtargets" :target = "target" :numbers_chosen = "numbers_chosen" :numbers_full = "numbers_full"
+                ></target>
+            </div><!-- bottom row -->
+
+        </div>
+
+        <div class="row container-fluid border-top mb-2 pb-2 pl-5 pr-5 pt-3" id="number_row">
+            <div class="number col" id="number_1"> {{numbers_chosen[0]}} </div>
+            <div class="number col" id="number_2"> {{numbers_chosen[1]}} </div>
+            <div class="number col" id="number_3"> {{numbers_chosen[2]}} </div>
+            <div class="number col" id="number_4"> {{numbers_chosen[3]}} </div>
+            <div class="number col" id="number_5"> {{numbers_chosen[4]}} </div>
+            <div class="number col" id="number_6"> {{numbers_chosen[5]}} </div>
+            <div class="number col" id="number_7"> {{numbers_chosen[6]}} </div>
+            <div class="number col" id="number_8"> {{numbers_chosen[7]}} </div>
+            <div class="number col" id="number_9"> {{numbers_chosen[8]}} </div>
+            <div class="number col" id="number_10"> {{numbers_chosen[9]}} </div>
+            <div class="number col" id="number_11"> {{numbers_chosen[10]}} </div>
+        </div> <!--end of row of numbers-->
+        <div class="row">
+            <div class="col text-center">
+                <b-button variant="outline-success" @click="start">Start!</b-button>
+            </div>
+        </div>
+
+    </div><!-- end of app -->
+
+</body>
+
+
+
+<script type="text/x-template" id="target-template">
+            <div :class="target.side" @click="shot(target.number)" class="target" v-if="targetshot">
+                <div class="target-number">
+                    {{target.number}}
+                </div>
+          </div>
+</script>
+
+
+<script>
+
+
+
+Vue.component('target', {
+    template: '#target-template',
+    props: ['target','numbers_chosen','numbers_full'],
+    methods: {
+        shot: function (target) {
+            this.numbers_chosen.push(target)
+            this.targetshot = false;
+        }
+    },
+    data: function () {
+        return {
+            targetshot : true
+        }
+    }
+})
+
+var app = new Vue({
+    el: '#app',
+
+    data: {
+        toptargets : [],
+        middletargets : [],
+        bottomtargets : [],
+        numbers_chosen : [],
+        numbers_full : false,
+        routine_one : [
+            {side:'left',number:'3',row:'top'},{side:'right',number:'7',row:'middle'},{side:'left',number:'9',row:'top'},{side:'left',number:'0',row:'bottom'},{side:'left',number:'8',row:'top'},
+            {side:'right',number:'4',row:'middle'},{side:'left',number:'1',row:'bottom'},{side:'right',number:'2',row:'top'},{side:'left',number:'5',row:'middle'},{side:'left',number:'9',row:'bottom'}
+        ],
+        interval: null
+    },
+    methods : {
+        start : function(){
+            this.interval = setInterval(() => {
+                if (this.routine_one.length) {
+                    if ( app.routine_one[0].row == 'top'){
+                        this.toptargets.push(this.routine_one.shift());
+                    } else if (app.routine_one[0].row == 'middle'){
+                        this.middletargets.push(this.routine_one.shift());
+                    } else {
+                        this.bottomtargets.push(this.routine_one.shift());
+                    }
+
+              } else {
+                clearInterval(this.interval);
+              }
+          }, 1000)
+
+
+            /*for (var i = 0; i <= 30; i++){
+                if ( app.routine_one[i].row == 'top'){
+                    setTimeout(function () {this.toptargets.push(this.routine_one[i])}, 3);
+                } else if (app.routine_one[i].row == 'middle'){
+                    app.middletargets.push(app.routine_one[i]);
+                } else {
+                    app.bottomtargets.push(app.routine_one[i]);
+                }
+            }   //end of for loop */
+        } //end of start
+    },
+});
+
+</script>
+
+
+
+</html>
