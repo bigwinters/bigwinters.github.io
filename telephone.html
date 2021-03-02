@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My first Vue app</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Input Your Telephone Number</title>
     <!-- Required Stylesheets -->
     <link
         type="text/css"
@@ -13,6 +16,7 @@
         rel="stylesheet"
         href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
         />
+
     <!-- Load polyfills to support older browsers -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
 
@@ -24,21 +28,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         #gallery{
-            height: 30em;
+            height: 790px;
+            background: url(img/lush-green-hills.svg);
+            background-size: cover;
+            background-position: top;
+            padding-top: 5em;
+            padding-left: 1em;
+            padding-right: 1em;
+            width: 99%;
+        }
+        @media screen and (min-width: 800px) {
+            #curtains{
+                width: 100%;
+                z-index: 3;
+                position: absolute;
+                pointer-events: none;
+            }
         }
 
-        #number_row .number{
-            border: solid 1px black;
-            width: 2em;
-            font-size: 4em;
-            text-align: center;
-            line-height: 1;
-            min-height: 2em;
-            padding-top: 0.5em;
+        @media only screen and (max-width: 600px) {
+            #curtains{
+                display: none;
+            }
+        }
+
+        #inputted_numbers{
+            font-size: 2em;
         }
 
         .duck_row{
-            height: 10em;
+            height: 15em;
+            border-bottom: burlywood 10px solid
         }
 
         .target-number{
@@ -46,8 +66,8 @@
             width: 1em;
             font-size: 4em;
             font-family: impact;
-            margin-top: 1.1em;
-            margin-left: 0.9em;
+            margin-top: 1.6em;
+            margin-left: 1.4em;
             width: 70px;
             height: 70px;
             background: white;
@@ -62,44 +82,48 @@
 
         .target{
             /* position: absolute; */
-            width: 150px;
-            height: 146px;
+            width: 200px;
+            height: 200px;
             cursor: pointer;
             user-select: none;
             background-color: #ffffff;
-            background: url(/img/rubberduck.png) repeat 0 0;
-            background-size: 150px 146px;
-        }
-
-        .right{
-            position: relative;
-            transform: scaleX(-1);
-            left: 85%;
-            animation-name: moveleft;
-            animation-duration: 6s;
-            -webkit-animation-fill-mode: forwards;
-            animation-timing-function: ease-in-out;
-        }
-
-        @keyframes moveleft {
-          0%   {left:85%;}
-          100% {left: -1em; visibility: hidden;}
-        }
-
-        .left{
-            position: relative;
-            animation-name: moveright;
-            animation-duration: 6s;
-            -webkit-animation-fill-mode: forwards;
-            animation-timing-function: ease-in-out;
-            left: 1em;
+            background: url(img/rubberduck.png) repeat 0 0;
+            background-size: 200px 200px;
+            margin-top: 35px;
+            display: inline;
         }
 
         @keyframes moveright {
           0%   {left:1em;}
-          100% {left:85%; visibility: hidden;}
+          100% {left:105em; position: absolute; visibility: hidden;}
         }
 
+        @keyframes moveleft {
+          0%   {left:105em;}
+          100% {left: 1em; position: absolute; visibility: hidden;}
+        }
+
+        .right{
+            position: absolute;
+            transform: scaleX(-1);
+            left: 105em;
+            animation-name: moveleft;
+            animation-duration: 3s;
+            -webkit-animation-fill-mode: forwards;
+            animation-timing-function: ease-in;
+            animation-iteration-count: 1;
+            z-index: 2;
+        }
+
+        .left{
+            position: absolute;
+            animation-name: moveright;
+            animation-duration: 3s;
+            -webkit-animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+            left: 1em;
+            animation-iteration-count: 1;
+        }
 
         .hide {
             visibility: hidden !important;
@@ -109,8 +133,23 @@
 </head>
 <body>
     <div id="app">
+        <audio id="circus" src="audio/circus.wav"></audio>
+        <audio id="pop" src="audio/pop.flac"></audio>
+        <div class="container">
+            <div class="input-group mb-3 mt-2 mb-2">
+              <div class="input-group-prepend">
+                <b-button class="text-center btn-success btn" @click="start">Please input your phone number:</b-button>
+              </div>
+              <span id="inputted_numbers" class="form-control">{{numbers_chosen[0]}}{{numbers_chosen[1]}}{{numbers_chosen[2]}}{{numbers_chosen[3]}}
+                  {{numbers_chosen[4]}}{{numbers_chosen[5]}}{{numbers_chosen[6]}}
+                  {{numbers_chosen[7]}}{{numbers_chosen[8]}}{{numbers_chosen[9]}}{{numbers_chosen[10]}}</span>
+            </div>
+        </div>
+        <!--end of row of numbers-->
 
-        <div id="gallery" class="container-fluid mb-4 pl-5 pr-5 mt-3">
+        <img src="curtains.png" id="curtains" alt="Responsive image">
+        <div id="gallery" class="container-fluid mb-4 mt-3">
+
             <div class="row duck_row" id="top-row">
                 <target
                   v-for="target in toptargets" :target = "target" :numbers_chosen = "numbers_chosen" :numbers_full = "numbers_full"
@@ -131,24 +170,7 @@
 
         </div>
 
-        <div class="row container-fluid border-top mb-2 pb-2 pl-5 pr-5 pt-3" id="number_row">
-            <div class="number col" id="number_1"> {{numbers_chosen[0]}} </div>
-            <div class="number col" id="number_2"> {{numbers_chosen[1]}} </div>
-            <div class="number col" id="number_3"> {{numbers_chosen[2]}} </div>
-            <div class="number col" id="number_4"> {{numbers_chosen[3]}} </div>
-            <div class="number col" id="number_5"> {{numbers_chosen[4]}} </div>
-            <div class="number col" id="number_6"> {{numbers_chosen[5]}} </div>
-            <div class="number col" id="number_7"> {{numbers_chosen[6]}} </div>
-            <div class="number col" id="number_8"> {{numbers_chosen[7]}} </div>
-            <div class="number col" id="number_9"> {{numbers_chosen[8]}} </div>
-            <div class="number col" id="number_10"> {{numbers_chosen[9]}} </div>
-            <div class="number col" id="number_11"> {{numbers_chosen[10]}} </div>
-        </div> <!--end of row of numbers-->
-        <div class="row">
-            <div class="col text-center">
-                <b-button variant="outline-success" @click="start">Start!</b-button>
-            </div>
-        </div>
+
 
     </div><!-- end of app -->
 
@@ -167,8 +189,6 @@
 
 <script>
 
-
-
 Vue.component('target', {
     template: '#target-template',
     props: ['target','numbers_chosen','numbers_full'],
@@ -176,6 +196,9 @@ Vue.component('target', {
         shot: function (target) {
             this.numbers_chosen.push(target)
             this.targetshot = false;
+            var audio = document.getElementById("pop");
+            audio.volume = 0.2;
+            audio.play();
         }
     },
     data: function () {
@@ -194,14 +217,26 @@ var app = new Vue({
         bottomtargets : [],
         numbers_chosen : [],
         numbers_full : false,
-        routine_one : [
-            {side:'left',number:'3',row:'top'},{side:'right',number:'7',row:'middle'},{side:'left',number:'9',row:'top'},{side:'left',number:'0',row:'bottom'},{side:'left',number:'8',row:'top'},
-            {side:'right',number:'4',row:'middle'},{side:'left',number:'1',row:'bottom'},{side:'right',number:'2',row:'top'},{side:'left',number:'5',row:'middle'},{side:'left',number:'9',row:'bottom'}
-        ],
-        interval: null
+        routine_one : [],
+        dupe : [],
+        interval: null,
     },
     methods : {
         start : function(){
+            var audio = document.getElementById("circus");
+            audio.volume = 0.2;
+            audio.loop = true;
+            audio.play();
+            this.routine_one = [
+                {side:'left',number:'3',row:'top'},{side:'right',number:'7',row:'middle'},{side:'left',number:'9',row:'bottom'},{side:'left',number:'8',row:'top'},{side:'right',number:'0',row:'middle'},
+                {side:'left',number:'1',row:'bottom'},{side:'right',number:'4',row:'top'},{side:'right',number:'2',row:'middle'},{side:'right',number:'5',row:'bottom'},{side:'left',number:'6',row:'top'},
+                {side:'left',number:'4',row:'middle'},{side:'left',number:'0',row:'bottom'},{side:'left',number:'1',row:'top'},{side:'right',number:'6',row:'top'},{side:'left',number:'7',row:'middle'},
+                {side:'right',number:'9',row:'middle'},{side:'left',number:'2',row:'bottom'},{side:'right',number:'5',row:'bottom'},{side:'left',number:'0',row:'top'},{side:'left',number:'1',row:'top'},
+                {side:'left',number:'2',row:'top'},{side:'right',number:'3',row:'middle'},{side:'right',number:'4',row:'middle'},{side:'right',number:'5',row:'middle'},{side:'left',number:'6',row:'bottom'},
+                {side:'left',number:'7',row:'bottom'},{side:'left',number:'8',row:'bottom'},{side:'left',number:'9',row:'top'},{side:'right',number:'9',row:'top'},{side:'left',number:'9',row:'middle'},
+                {side:'right',number:'9',row:'middle'},{side:'left',number:'9',row:'bottom'},{side:'right',number:'9',row:'bottom'}
+            ];
+            this.numbers_chosen = [];
             this.interval = setInterval(() => {
                 if (this.routine_one.length) {
                     if ( app.routine_one[0].row == 'top'){
@@ -214,8 +249,10 @@ var app = new Vue({
 
               } else {
                 clearInterval(this.interval);
+                audio.loop = false;
               }
-          }, 1000)
+          }, 1000);
+
 
 
             /*for (var i = 0; i <= 30; i++){
