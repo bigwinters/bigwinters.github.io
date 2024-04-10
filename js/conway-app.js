@@ -117,9 +117,12 @@ $(document).ready( function(){
             if (!cellsAlive() || stagnant) {
                 break;
             }
-        newCells();
-        tick();
-        };
+            newCells();
+            tick();
+	     if (board == tickBoard) {
+                break;
+            }
+          };
 	});
 
 	$("#step").click(function(){
