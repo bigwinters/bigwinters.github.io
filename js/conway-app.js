@@ -119,9 +119,6 @@ $(document).ready( function(){
             }
             newCells();
             tick();
-	     if (board == tickBoard) {
-                break;
-            }
           };
 	});
 
