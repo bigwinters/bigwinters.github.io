@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <p id="food"></p>
+<head>
+  <title>D3.js Dashboard</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="chart"></div>
+  <script>
+    const csvUrl = "https://docs.google.com/spreadsheets/d/1tKrnlIyCXTcojzKiLTvYkIWDbTb5o59BVRpPseZiFXY/gviz/tq?tqx=out:csv";
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
-    <script type="text/javascript">
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1tKrnlIyCXTcojzKiLTvYkIWDbTb5o59BVRpPseZiFXY/pub?output=csv';
+    d3.csv(csvUrl).then(function(data) {
+      console.log(data);
 
-      function init() {
-        Papa.parse(public_spreadsheet_url, {
-          download: true,
-          header: true,
-          complete: showInfo
-        })
-      }
+      // Example: Create a bar chart
 
-      window.addEventListener('DOMContentLoaded', init)
+      // Set dimensions and margins
+      const margin = {top: 20, right: 30, bottom: 40, left: 40},
+            width = 800 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
 
-      function showInfo(results) {
-        var data = results.data
+      // Append SVG object to the body of the page
+      const svg = d3.select("#chart")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // data comes through as a simple array since simpleSheet is turned on
-        alert("Successfully processed " + data.length + " rows!")
-        document.getElementById("food").innerHTML = "<strong>Foods:</strong> " + [ data[0].Name, data[1].Name, data[2].Name ].join(", ");
-        console.log(data);
-      }
+      // X axis
+      const x = d3.scaleBand()
+                  .range([0, width])
+                  .domain(data.map(d => d.Category))  // Replace 'Category' with your column name
+                  .padding(0.2);
 
-      document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");        
-    </script>
-    <p><strong>This example is only going to work if it's on the internet or on a local server!</strong> To run a local server, run "terminal" or "command prompt" and run the command <code>python -m http.server</code> or <code>python -m SimpleHTTPServer</code> (whichever one works, really, and you might even need to <a href="http://littlecolumns.com/tools/python-wrangler/">install Python</a>). Then visit <a href="http://localhost:8000/">http://localhost:8000</a> and you'll be all set.</p>
-  </body>
+      svg.append("g")
+         .attr("transform", `translate(0,${height})`)
+         .call(d3.axisBottom(x));
+
+      // Y axis
+      const y = d3.scaleLinear()
+                  .domain([0, d3.max(data, d => +d.Value)])  // Replace 'Value' with your column name
+                  .range([height, 0]);
+
+      svg.append("g")
+         .call(d3.axisLeft(y));
+
+      // Bars
+      svg.selectAll("bars")
+         .data(data)
+         .enter()
+         .append("rect")
+         .attr("x", d => x(d.Category))  // Replace 'Category' with your column name
+         .attr("y", d => y(d.Value))  // Replace 'Value' with your column name
+         .attr("width", x.bandwidth())
+         .attr("height", d => height - y(d.Value))  // Replace 'Value' with your column name
+         .attr("fill", "#69b3a2");
+    }).catch(function(error) {
+      console.error('Error loading the CSV data: ', error);
+    });
+  </script>
+</body>
 </html>
