@@ -30,7 +30,7 @@
       // X axis
       const x = d3.scaleBand()
                   .range([0, width])
-                  .domain(data.map(d => d.Category))  // Replace 'Category' with your column name
+                  .domain(data.map(d => d.Book))  
                   .padding(0.2);
 
       svg.append("g")
@@ -39,7 +39,7 @@
 
       // Y axis
       const y = d3.scaleLinear()
-                  .domain([0, d3.max(data, d => +d.Value)])  // Replace 'Value' with your column name
+                  .domain([0, d3.max(data, d => +d.Score)])  
                   .range([height, 0]);
 
       svg.append("g")
@@ -50,10 +50,10 @@
          .data(data)
          .enter()
          .append("rect")
-         .attr("x", d => x(d.Category))  // Replace 'Category' with your column name
-         .attr("y", d => y(d.Value))  // Replace 'Value' with your column name
+         .attr("x", d => x(d.Book)) 
+         .attr("y", d => y(d.Score))  
          .attr("width", x.bandwidth())
-         .attr("height", d => height - y(d.Value))  // Replace 'Value' with your column name
+         .attr("height", d => height - y(d.Score))
          .attr("fill", "#69b3a2");
     }).catch(function(error) {
       console.error('Error loading the CSV data: ', error);
